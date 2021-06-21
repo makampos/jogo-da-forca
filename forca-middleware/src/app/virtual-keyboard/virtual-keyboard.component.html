@@ -1,0 +1,17 @@
+<div class="bg-dark py-2">
+  <div class="d-flex flex-wrap justify-content-center">
+    <ng-container *ngFor="let char of characters">
+      <button
+        class="btn btn-keyboard btn-secondary m-1"
+        (click)="keyClick(char)"
+        [appKeyCharacter]="char"
+      >
+        {{ char }}
+      </button>
+      <div
+        style="flex-basis: 100%; width: 0; height: 0; overflow: hidden"
+        *ngIf="char == 'P' || char == 'L'"
+      ></div>
+    </ng-container>
+  </div>
+</div>

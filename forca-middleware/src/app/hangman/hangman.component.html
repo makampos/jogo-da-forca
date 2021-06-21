@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-9">
+    </div>
+    <div class="col-12 col-md-3">
+      <button type="button" class="btn btn-success lives-btn" [appLives]>
+        Tentativas
+        <span class="badge badge-light">{{
+          gameService.maxFails - gameService.fails.getValue()
+        }}</span>        
+      </button> 
+      <span>
+        
+      </span>
+      <span style="display:block; margin-top: 20px;  width: 700px;"><b>Definição: </b> {{WordDefinition}}</span>     
+    </div>          
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      <ng-container [ngSwitch]="gameService.stateGame.getValue()">
+        <span class="text-success" *ngSwitchCase="StateGame.WIN"
+          >Parabéns!</span
+        >
+        <span class="text-danger" *ngSwitchCase="StateGame.GAME_OVER"
+          >Voce Perdeu!</span
+        >
+        <span *ngSwitchDefault>Error</span>
+      </ng-container>
+    </h4>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="gameService.refresh(); modal.close()"
+    >
+      Novo Jogo
+    </button>
+  </div>
+</ng-template>
